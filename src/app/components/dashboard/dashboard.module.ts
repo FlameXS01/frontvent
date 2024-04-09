@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { UsuarioComponent } from './usuario/usuario.component';
+import { CrearUsuarioComponent } from './usuarios/crear-usuario/crear-usuario.component';
 
 
 
@@ -16,6 +17,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
     NavbarComponent,
     InicioComponent,
     UsuarioComponent,
+    CrearUsuarioComponent,
     
   ],
   imports: [

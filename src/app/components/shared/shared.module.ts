@@ -14,6 +14,10 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatPaginatorModule} from '@angular/material/paginator'; 
 import { MatTableDataSource } from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatSelectModule}  from '@angular/material/select';
+
 
 
 
@@ -35,7 +39,10 @@ import {MatSortModule} from '@angular/material/sort';
     MatTableModule,
     MatTooltipModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatCardModule,
+    MatGridListModule,
+    MatSelectModule
     
     
 
@@ -53,7 +60,10 @@ import {MatSortModule} from '@angular/material/sort';
     MatTableModule,
     MatTooltipModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatCardModule,
+    MatGridListModule,
+    MatSelectModule
   ]
 })
 export class SharedModule { }
