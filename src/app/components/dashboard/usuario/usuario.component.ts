@@ -44,8 +44,8 @@ export class UsuarioComponent {
 
 
     //////////////////////////
-    this.lista_usuarios = this._usuarioService.cargar_usuarios();
-    this.dataSource = new MatTableDataSource(this.lista_usuarios);
+    // this.lista_usuarios = this._usuarioService.cargar_usuarios();
+    // this.dataSource = new MatTableDataSource(this.lista_usuarios);
   }
   ngOnInit(): void {
     this.cargarUsuario();
