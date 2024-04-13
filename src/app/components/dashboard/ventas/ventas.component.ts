@@ -35,8 +35,13 @@ export class VentasComponent {
   }
 
   cargarVentas(){
-    this.lista_ventas = this._ventasService.cargar_ventas();
-    this.dataSource = new MatTableDataSource(this.lista_ventas);
+    this._ventasService.consultarVentas().subscribe(datos=>{
+      this.dataSource = new MatTableDataSource(datos);
+    });    
+
+    //////////
+    // this.lista_ventas = this._ventasService.cargar_ventas();
+    // this.dataSource = new MatTableDataSource(this.lista_ventas);
   }
   ngOnInit(): void {
     this.cargarVentas();

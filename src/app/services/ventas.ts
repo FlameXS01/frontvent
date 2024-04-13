@@ -13,20 +13,7 @@ export class VentasService {
   constructor(private servicio:HttpClient) { }
 
   ventasList: Ventas[] = [
-        {
-            stock: 50,
-            price: 10,
-            dateSell: new Date('2024-04-09'),
-            idPerson: 1,
-            idProduct: 1
-        },
-        {
-            stock: 60,
-            price: 15,
-            dateSell: new Date('2024-04-10'),
-            idPerson: 2,
-            idProduct: 2
-        }
+      
     ];
     servidor = "http://localhost:8000/api";
 

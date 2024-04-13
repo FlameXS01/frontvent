@@ -14,7 +14,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 
 export class UsuarioComponent {
-  displayedColumns: string[] = ['usuario', 'nombre', 'apellidos', 'rol', 'acciones'];
+  displayedColumns: string[] = ['user', 'name', 'lastName','phoneNumber', 'rol', 'acciones'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -37,6 +37,13 @@ export class UsuarioComponent {
   }
 
   cargarUsuario(){
+
+      this._usuarioService.consultarNationalProdProd().subscribe(datos=>{
+      this.dataSource = new MatTableDataSource(datos);
+    });    
+
+
+    //////////////////////////
     this.lista_usuarios = this._usuarioService.cargar_usuarios();
     this.dataSource = new MatTableDataSource(this.lista_usuarios);
   }

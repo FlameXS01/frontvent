@@ -13,20 +13,19 @@ export class CrearUsuarioComponent implements OnInit {
   roles: any[] = [
     {value: 'admin', viewValue: 'Admin'},
     {value: 'trabajador', viewValue: 'Trabajador'},
-    {value: 'estudiante', viewValue: 'Estudiante'},
+    {value: 'cliente', viewValue: 'Cliente'},
   ];
-  estados: any[] = [
-    {value: 'activo', viewValue: 'Activo'},
-    {value: 'bloqueado', viewValue: 'Bloqueado'},
-  ];
+
   constructor( private fb: FormBuilder, private router: Router, private _usuarioService: UsuarioService)  { 
     this.form_usuario = this.fb.group({
-      usuario:['', Validators.required],
       name:['', Validators.required],
-      apellidos:['', Validators.required],
-      password:['', Validators.required],
+      lastName:['', Validators.required],
+      address:['', Validators.required],
+      phoneNumber:['', Validators.required],
       rol:['', Validators.required],
-      estado:['', Validators.required], 
+      user:['', Validators.required], 
+      clave:['', Validators.required], 
+
       })
   
   }
@@ -43,12 +42,16 @@ export class CrearUsuarioComponent implements OnInit {
   
   agregarUsuario(){
     const user: Usuario = {
-      usuario: this.form_usuario.value.usuario,
+     
       name: this.form_usuario.value.name,
-      apellidos: this.form_usuario.value.apellidos,
+      lastName: this.form_usuario.value.lastName,
+      address: this.form_usuario.value.address,
+      phoneNumber: this.form_usuario.value.phoneNumber,
       rol: this.form_usuario.value.rol,
-      estado: this.form_usuario.value.estado,
-      password:this.form_usuario.value.password,
+      user:{
+        user: this.form_usuario.value.user,
+        clave:this.form_usuario.value.clave,
+        }
     }
 
     this._usuarioService.agregarUsuario(user); 

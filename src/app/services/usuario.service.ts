@@ -14,7 +14,7 @@ export class UsuarioService {
   servidor = "http://localhost:8000/api";
 
   consultarNationalProdProd(): Observable<any>{
-    return this.servicio.get(`${this.servidor}/pendiente`);
+    return this.servicio.get(`${this.servidor}/person`);
   }
 
   lista_usuarios: Usuario[] = [

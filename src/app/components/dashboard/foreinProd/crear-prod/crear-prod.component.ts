@@ -35,8 +35,14 @@ export class ListarProdComponent {
   }
 
   cargarUsuario(){
-    this.lista_foreinProd = this._foreinService.cargar_foreignProd();
-    this.dataSource = new MatTableDataSource(this.lista_foreinProd);
+
+    this._foreinService.consultarForeignProd().subscribe(datos=>{
+      console.log(datos);
+      this.dataSource = new MatTableDataSource(datos);
+    });  
+    //////
+    // this.lista_foreinProd = this._foreinService.cargar_foreignProd();
+    // this.dataSource = new MatTableDataSource(this.lista_foreinProd);
   }
   ngOnInit(): void {
     this.cargarUsuario();
