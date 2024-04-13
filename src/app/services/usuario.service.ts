@@ -24,8 +24,11 @@ export class UsuarioService {
     return this.lista_usuarios.slice();
   }
 
-  eliminar_usuario(index: number){
-    this.lista_usuarios.splice(index, 1);
+  eliminar_usuario(id: number){
+    
+      return this.servicio.delete(`${this.servidor}/person/deletePerson/${id}`);
+    
+  
   }
 
   

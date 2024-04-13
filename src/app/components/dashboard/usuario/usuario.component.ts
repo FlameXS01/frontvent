@@ -21,7 +21,6 @@ export class UsuarioComponent {
 
   constructor(private _usuarioService: UsuarioService, private _snackBar: MatSnackBar) { }
 
-  lista_usuarios: Usuario [ ] = [ ];
  
   dataSource!: MatTableDataSource<any>;
 
@@ -50,16 +49,21 @@ export class UsuarioComponent {
   ngOnInit(): void {
     this.cargarUsuario();
   }
-  eliminarUsuario(index: number){
-    this._usuarioService.eliminar_usuario(index);
-    this.cargarUsuario();
-    this._snackBar.open('Usuario eliminado correctamente', '', {
-      duration: 1500,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom'
-    });
+  eliminarUsuario(id: number){  
 
-  }
+    this._usuarioService.eliminar_usuario(id).subscribe({
+      next: () => this._snackBar.open('Usuario eliminado correctamente', '', {
+         duration: 1500,
+         horizontalPosition: 'center',
+         verticalPosition: 'bottom'
+         }),
+      error: (error) => console.error(`Error al eliminar usuario con ID ${id}:`, error)
+    });    
+    
+    this.cargarUsuario();    
+    
+     
+    }
  
 
 
