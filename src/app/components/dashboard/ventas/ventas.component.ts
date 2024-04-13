@@ -1,27 +1,25 @@
-import { Component, OnInit, ViewChild, } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Usuario } from 'src/app/interface/usuario';
-import { UsuarioService } from 'src/app/services/usuario.service';
-
+import { Ventas } from 'src/app/interface/ventas';
+import { VentasService } from 'src/app/services/ventas';
 
 @Component({
-  selector: 'app-usuario',
-  templateUrl: './usuario.component.html',
-  styleUrls: ['./usuario.component.css']
+  selector: 'app-ventas',
+  templateUrl: './ventas.component.html',
+  styleUrls: ['./ventas.component.css']
 })
-
-export class UsuarioComponent {
-  displayedColumns: string[] = ['usuario', 'nombre', 'apellidos', 'rol', 'acciones'];
+export class VentasComponent {
+  displayedColumns: string[] = ['stock', 'price', 'dateSell','acciones'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private _usuarioService: UsuarioService, private _snackBar: MatSnackBar) { }
+  constructor(private _ventasService: VentasService, private _snackBar: MatSnackBar) { }
 
-  lista_usuarios: Usuario [ ] = [ ];
+  lista_ventas: Ventas [ ] = [ ];
  
   dataSource!: MatTableDataSource<any>;
 
@@ -36,16 +34,16 @@ export class UsuarioComponent {
     this.dataSource.sort = this.sort;
   }
 
-  cargarUsuario(){
-    this.lista_usuarios = this._usuarioService.cargar_usuarios();
-    this.dataSource = new MatTableDataSource(this.lista_usuarios);
+  cargarVentas(){
+    this.lista_ventas = this._ventasService.cargar_ventas();
+    this.dataSource = new MatTableDataSource(this.lista_ventas);
   }
   ngOnInit(): void {
-    this.cargarUsuario();
+    this.cargarVentas();
   }
-  eliminarUsuario(index: number){
-    this._usuarioService.eliminar_usuario(index);
-    this.cargarUsuario();
+  deleteVentas(index: number){
+    this._ventasService.deleteProduct(index);
+    this.cargarVentas();
     this._snackBar.open('Usuario eliminado correctamente', '', {
       duration: 1500,
       horizontalPosition: 'center',
@@ -53,10 +51,5 @@ export class UsuarioComponent {
     });
 
   }
- 
-
 
 }
-
-
-

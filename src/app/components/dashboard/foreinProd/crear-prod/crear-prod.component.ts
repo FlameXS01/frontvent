@@ -1,27 +1,25 @@
-import { Component, OnInit, ViewChild, } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { Usuario } from 'src/app/interface/usuario';
-import { UsuarioService } from 'src/app/services/usuario.service';
-
+import { ForeignProd } from 'src/app/interface/foreigProd';
+import { ForeignProdService } from 'src/app/services/foreignProd';
 
 @Component({
-  selector: 'app-usuario',
-  templateUrl: './usuario.component.html',
-  styleUrls: ['./usuario.component.css']
+  selector: 'app-crear-prod',
+  templateUrl: './crear-prod.component.html',
+  styleUrls: ['./crear-prod.component.css']
 })
-
-export class UsuarioComponent {
-  displayedColumns: string[] = ['usuario', 'nombre', 'apellidos', 'rol', 'acciones'];
+export class ListarProdComponent {
+  displayedColumns: string[] = ['country', 'name', 'description', 'price', 'weight', 'expireAt','acciones'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private _usuarioService: UsuarioService, private _snackBar: MatSnackBar) { }
+  constructor(private _foreinService: ForeignProdService, private _snackBar: MatSnackBar) { }
 
-  lista_usuarios: Usuario [ ] = [ ];
+  lista_foreinProd: ForeignProd [ ] = [ ];
  
   dataSource!: MatTableDataSource<any>;
 
@@ -37,14 +35,14 @@ export class UsuarioComponent {
   }
 
   cargarUsuario(){
-    this.lista_usuarios = this._usuarioService.cargar_usuarios();
-    this.dataSource = new MatTableDataSource(this.lista_usuarios);
+    this.lista_foreinProd = this._foreinService.cargar_foreignProd();
+    this.dataSource = new MatTableDataSource(this.lista_foreinProd);
   }
   ngOnInit(): void {
     this.cargarUsuario();
   }
-  eliminarUsuario(index: number){
-    this._usuarioService.eliminar_usuario(index);
+  deleteProduct(index: number){
+    this._foreinService.deleteProduct(index);
     this.cargarUsuario();
     this._snackBar.open('Usuario eliminado correctamente', '', {
       duration: 1500,
@@ -53,10 +51,5 @@ export class UsuarioComponent {
     });
 
   }
- 
-
 
 }
-
-
-

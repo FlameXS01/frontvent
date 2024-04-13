@@ -1,0 +1,43 @@
+<mat-toolbar>
+    <span>Crear Venta</span>
+</mat-toolbar>
+<mat-card style="margin-top: 10px;">Formulario de Venta
+    <form [formGroup]="form_venta" (ngSubmit)="agregarVenta()" >
+        <mat-grid-list cols="2" rowHeight="70px">
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="ancho">
+                    <mat-label>Stock</mat-label>
+                    <input matInput autocomplete="off" formControlName="stock">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="ancho">
+                    <mat-label>Precio</mat-label>
+                    <input matInput autocomplete="off" formControlName="price">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="ancho">
+                    <mat-label>Fecha de Venta</mat-label>
+                    <input matInput autocomplete="off" formControlName="dateSell">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="ancho">
+                    <mat-label>ID de Persona</mat-label>
+                    <input matInput autocomplete="off" formControlName="idPerson">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="1" [rowspan]="1">
+                <mat-form-field class="ancho">
+                    <mat-label>ID de Producto</mat-label>
+                    <input matInput autocomplete="off" formControlName="idProduct">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile [colspan]="2" [rowspan]="1" >
+                <button mat-raised-button style="margin-right: 20px;">Volver</button>
+                <button type="submit"  [disabled]="form_venta.invalid" mat-raised-button color="primary">Aceptar</button>
+            </mat-grid-tile>
+        </mat-grid-list>        
+    </form>
+</mat-card>

@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../interface/usuario';
-import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-  constructor() { }
+  constructor(private servicio:HttpClient) { }
+
+  servidor = "http://localhost:8000/api";
+
+  consultarNationalProdProd(): Observable<any>{
+    return this.servicio.get(`${this.servidor}/pendiente`);
+  }
 
   lista_usuarios: Usuario[] = [
-    {usuario: 'jcmartinez', nombre: 'Julio', apellidos: 'Companioni Martinez', rol: 'Admin', estado: 'activo'},  
   ];
 
   cargar_usuarios(){
@@ -22,6 +29,10 @@ export class UsuarioService {
   }
 
   
+
+  agregarUsuario(usuario: Usuario){
+    this.lista_usuarios.unshift(usuario);
+  }
 
 
 }

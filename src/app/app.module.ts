@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from './components/shared/shared.module';
-
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -16,7 +16,8 @@ import { SharedModule } from './components/shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule, 
-    SharedModule
+    SharedModule,
+    HttpClientModule
    
   ],
   providers: [],
