@@ -26,8 +26,8 @@ export class ForeignProdService {
     return this.foreignProdList.slice();
   }
 
-  deleteProduct(index: number){
-    this.foreignProdList.splice(index, 1);
+  deleteProduct(id: number){
+    return this.servicio.delete(`${this.servidor}/foreignProd/deleteForeign/${id}`);
   }
 
   

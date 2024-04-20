@@ -25,8 +25,8 @@ export class VentasService {
     return this.ventasList.slice();
   }
 
-  deleteProduct(index: number){
-    this.ventasList.splice(index, 1);
+  deleteVenta(id: number){
+    return this.servicio.delete(`${this.servidor}/ventas/deleteVentas/${id}`);
   }
 
   

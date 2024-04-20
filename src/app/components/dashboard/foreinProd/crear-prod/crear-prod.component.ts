@@ -34,28 +34,28 @@ export class ListarProdComponent {
     this.dataSource.sort = this.sort;
   }
 
-  cargarUsuario(){
+  cargarProd(){
 
     this._foreinService.consultarForeignProd().subscribe(datos=>{
       console.log(datos);
       this.dataSource = new MatTableDataSource(datos);
     });  
-    //////
-    // this.lista_foreinProd = this._foreinService.cargar_foreignProd();
-    // this.dataSource = new MatTableDataSource(this.lista_foreinProd);
-  }
+   }
   ngOnInit(): void {
-    this.cargarUsuario();
+    this.cargarProd();
   }
-  deleteProduct(index: number){
-    this._foreinService.deleteProduct(index);
-    this.cargarUsuario();
-    this._snackBar.open('Usuario eliminado correctamente', '', {
-      duration: 1500,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom'
-    });
-
+  deleteProduct(id: number){
+    this._foreinService.deleteProduct(id).subscribe({
+      next: () => {
+        this._snackBar.open('Producto eliminado correctamente', '', {
+          duration: 1500,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom'
+        });
+        this.cargarProd();  
+      },
+      error: (error) => console.error(`Error al eliminar prodcuto con ID ${id}:`, error)
+    });   
   }
 
 }

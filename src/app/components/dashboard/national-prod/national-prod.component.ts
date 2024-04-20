@@ -48,13 +48,17 @@ export class NationalProdComponent {
   ngOnInit(): void {
     this.cargarProd();
   }
-  deleteProduct(index: number){
-    this._nationalService.deleteProduct(index);
-    this.cargarProd();
-    this._snackBar.open('Producto eliminado correctamente', '', {
-      duration: 1500,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom'
+  deleteProduct(id: number){
+    this._nationalService.deleteProduct(id).subscribe({
+      next: () => {
+        this._snackBar.open('Producto eliminado correctamente', '', {
+          duration: 1500,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom'
+        });
+        this.cargarProd();  
+      },
+      error: (error) => console.error(`Error al eliminar prodcuto con ID ${id}:`, error)
     });
 
   }

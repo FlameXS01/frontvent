@@ -1,4 +1,5 @@
 export interface ForeignProd {
+    idForeign?:number;
     country: string;
     buyPrice: number;
     product:{

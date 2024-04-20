@@ -1,4 +1,5 @@
 export interface NationalProd {
+    idNational?: number;
     maker: string;
     buyPrice: number;
     product:{

@@ -40,32 +40,23 @@ export class UsuarioComponent {
       this._usuarioService.consultarNationalProdProd().subscribe(datos=>{
       this.dataSource = new MatTableDataSource(datos);
     });    
-
-
-    //////////////////////////
-    // this.lista_usuarios = this._usuarioService.cargar_usuarios();
-    // this.dataSource = new MatTableDataSource(this.lista_usuarios);
   }
   ngOnInit(): void {
     this.cargarUsuario();
   }
   eliminarUsuario(id: number){  
-
     this._usuarioService.eliminar_usuario(id).subscribe({
-      next: () => this._snackBar.open('Usuario eliminado correctamente', '', {
-         duration: 1500,
-         horizontalPosition: 'center',
-         verticalPosition: 'bottom'
-         }),
+      next: () => {
+        this._snackBar.open('Usuario eliminado correctamente', '', {
+          duration: 1500,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom'
+        });
+        this.cargarUsuario();  // Mover esta línea aquí
+      },
       error: (error) => console.error(`Error al eliminar usuario con ID ${id}:`, error)
-    });    
-    
-    this.cargarUsuario();    
-    
-     
-    }
- 
-
+    });      
+} 
 
 }
 

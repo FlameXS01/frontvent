@@ -46,14 +46,18 @@ export class VentasComponent {
   ngOnInit(): void {
     this.cargarVentas();
   }
-  deleteVentas(index: number){
-    this._ventasService.deleteProduct(index);
-    this.cargarVentas();
-    this._snackBar.open('Usuario eliminado correctamente', '', {
-      duration: 1500,
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom'
-    });
+  deleteVentas(id: number){
+    this._ventasService.deleteVenta(id).subscribe({
+      next: () => {
+        this._snackBar.open('Registro eliminado correctamente', '', {
+          duration: 1500,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom'
+        });
+        this.cargarVentas();  // Mover esta línea aquí
+      },
+      error: (error) => console.error(`Error al eliminar usuario con ID ${id}:`, error)
+    });   
 
   }
 

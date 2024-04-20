@@ -26,8 +26,8 @@ export class NationalProdService {
     return this.nationalProdList.slice();
   }
 
-  deleteProduct(index: number){
-    this.nationalProdList.splice(index, 1);
+  deleteProduct(id: number){
+    return this.servicio.delete(`${this.servidor}/nationalProd/deleteUser/${id}`);
   }
 
   
