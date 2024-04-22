@@ -3,6 +3,7 @@ import { ForeignProd } from 'src/app/interface/foreigProd';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ForeignProdService } from 'src/app/services/foreignProd';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./forein-product.component.css']
 })
 export class ForeinProductComponent {
-  constructor( private fb: FormBuilder, private _foreignProdService: ForeignProdService, private router: Router )  { 
+  constructor( private fb: FormBuilder, private _foreignProdService: ForeignProdService, private router: Router, private _snackBar: MatSnackBar )  { 
     this.form_producto = this.fb.group({
       country:['', Validators.required],
       buyPrice:['', Validators.required],
@@ -32,7 +33,7 @@ export class ForeinProductComponent {
   }
 
     agregarForeignProd(){
-      const user: ForeignProd = {
+      const prod: ForeignProd = {
         country: this.form_producto.value.country,
         buyPrice: this.form_producto.value.buyPrice,
         product:{
@@ -44,11 +45,23 @@ export class ForeinProductComponent {
           createAt: this.form_producto.value.createAt,
           expireAt: this.form_producto.value.expireAt,
           idCategory: this.form_producto.value.idCategory,
+          }
         }
-            }
-          this._foreignProdService.agregarForeignProd(user); 
-          this.router.navigate(['/dashboard/foreinProd/crear-prod']);
-  }
+            
+    this._foreignProdService.agregarForeignProd(prod).subscribe(
+      (response) => {
+        this.router.navigate(['/dashboard/foreinProd/crear-prod']); 
+          this._snackBar.open('Producto creado correctamente', '', {
+          duration: 1500,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom'
+        });
+      },
+      (error) => {
+        console.error(error);
+      }); 
+
+        }
 }
 
 

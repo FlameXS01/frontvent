@@ -14,13 +14,13 @@ import { CrearVentaComponent } from './ventas/crear-venta/crear-venta.component'
 const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
     {path: '', component: InicioComponent},
-    {path: 'usuarios', component: UsuarioComponent},
+    {path: 'usuarios', component: UsuarioComponent},//lista
     {path: 'usuarios/crear-usuario', component: CrearUsuarioComponent},
-    {path: 'foreinProd/crear-prod', component: ListarProdComponent},
+    {path: 'foreinProd/crear-prod', component: ListarProdComponent},//lista
     {path: 'forein-product', component: ForeinProductComponent},
-    {path: 'national-prod', component: NationalProdComponent},
+    {path: 'national-prod', component: NationalProdComponent},//lista
     {path: 'national-prod/crear-prod', component: NationalProductComponent},
-    {path: 'ventas', component: VentasComponent},
+    {path: 'ventas', component: VentasComponent},// lista
     {path: 'ventas/crear-venta', component: CrearVentaComponent},
     
 

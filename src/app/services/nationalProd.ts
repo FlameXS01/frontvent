@@ -33,7 +33,8 @@ export class NationalProdService {
   
 
   agregarNationalProd(nationalProd: NationalProd){
-    this.nationalProdList.unshift(nationalProd);
+    return this.servicio.post(`${this.servidor}/nationalProd/createNationalN`, nationalProd);
+
   }
 
 

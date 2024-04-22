@@ -34,7 +34,9 @@ export class UsuarioService {
   
 
   agregarUsuario(usuario: Usuario){
-    this.lista_usuarios.unshift(usuario);
+    return this.servicio.post(`${this.servidor}/person/createPerson`, usuario);
+
+
   }
 
 

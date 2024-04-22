@@ -31,8 +31,9 @@ export class VentasService {
 
   
 
-  agregarVentas(ventas: Ventas){
-    this.ventasList.unshift(ventas);
+  agregarVentas(venta: Ventas){
+    return this.servicio.post(`${this.servidor}/ventas/createVentas`, venta);
+
   }
 
 

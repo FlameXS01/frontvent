@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/interface/usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -16,7 +17,7 @@ export class CrearUsuarioComponent implements OnInit {
     {value: 'cliente', viewValue: 'Cliente'},
   ];
 
-  constructor( private fb: FormBuilder, private router: Router, private _usuarioService: UsuarioService)  { 
+  constructor( private fb: FormBuilder, private router: Router, private _usuarioService: UsuarioService, private _snackBar: MatSnackBar)  { 
     this.form_usuario = this.fb.group({
       name:['', Validators.required],
       lastName:['', Validators.required],
@@ -54,8 +55,19 @@ export class CrearUsuarioComponent implements OnInit {
         }
     }
 
-    this._usuarioService.agregarUsuario(user); 
-    this.router.navigate(['/dashboard/usuarios']);
+    this._usuarioService.agregarUsuario(user).subscribe(
+      (response) => {
+        this.router.navigate(['/dashboard/usuarios']); 
+          this._snackBar.open('Usuario creado correctamente', '', {
+          duration: 1500,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom'
+        });
+      },
+      (error) => {
+        console.error(error);
+      }); 
+
 }
 
 }

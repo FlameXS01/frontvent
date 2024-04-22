@@ -33,7 +33,8 @@ export class ForeignProdService {
   
 
   agregarForeignProd(foreignProd: ForeignProd){
-    this.foreignProdList.unshift(foreignProd);
+    return this.servicio.post(`${this.servidor}/foreignProd/createForeignP`, foreignProd);
+
   }
 
 

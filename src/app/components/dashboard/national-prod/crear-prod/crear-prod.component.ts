@@ -3,6 +3,7 @@ import { NationalProd } from 'src/app/interface/nationalProd';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NationalProdService } from 'src/app/services/nationalProd';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./crear-prod.component.css']
 })
 export class NationalProductComponent {
-  constructor( private fb: FormBuilder, private _nationalProdService: NationalProdService, private router: Router)  { 
+  constructor( private fb: FormBuilder, private _nationalProdService: NationalProdService, private _snackBar: MatSnackBar, private router: Router)  { 
     this.form_producto = this.fb.group({
       maker:['', Validators.required],
       buyPrice:['', Validators.required],
@@ -45,9 +46,19 @@ export class NationalProductComponent {
         expireAt: this.form_producto.value.expireAt,
         idCategory: this.form_producto.value.idCategory,
       }
-          }
-          this._nationalProdService.agregarNationalProd(prodN); 
-          this.router.navigate(['/dashboard/national-prod']);
-}
+    }
+    this._nationalProdService.agregarNationalProd(prodN).subscribe(
+      (response) => {
+        this.router.navigate(['/dashboard/national-prod']); 
+          this._snackBar.open('Producto creado correctamente', '', {
+          duration: 1500,
+          horizontalPosition: 'center',
+          verticalPosition: 'bottom'
+        });
+      },
+      (error) => {
+        console.error(error);
+      }); 
+  }
 
 }
