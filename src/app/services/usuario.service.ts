@@ -8,6 +8,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsuarioService {
+  cargarUsuario(id: number) {
+
+  }
 
   constructor(private servicio:HttpClient) { }
 
