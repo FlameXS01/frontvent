@@ -24,38 +24,28 @@ export class CrearUsuarioComponent implements OnInit {
     private router: Router,
     private _usuarioService: UsuarioService,
     private _snackBar: MatSnackBar, 
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    
   )  {  
+      this.form_usuario = this.fb.group({
+        name:['', Validators.required],
+        lastName:['', Validators.required],
+        address:['', Validators.required],
+        phoneNumber:['', Validators.required],
+        rol:['', Validators.required],
+        user:['', Validators.required], 
+        clave:['', Validators.required], 
+      });
       if (this.route.snapshot.data['estado'] == 'modificar') {
         // formulario para modificar    
         const id = this.route.snapshot.params['id'];
         this.modo = 'modificar';        
-        this.form_usuario = this.fb.group({
-            name:['', Validators.required],
-            lastName:['', Validators.required],
-            address:['', Validators.required],
-            phoneNumber:['', Validators.required],
-            rol:['', Validators.required],
-            user:['', Validators.required], 
-            clave:['', Validators.required], 
-        });
+       
         this.cargarUsuario(id);
       } else {
         // formulario para agregar 
-        this.modo = 'crear';           
-        this.form_usuario = this.fb.group({
-          name:['', Validators.required],
-          lastName:['', Validators.required],
-          address:['', Validators.required],
-          phoneNumber:['', Validators.required],
-          rol:['', Validators.required],
-          user:['', Validators.required], 
-          clave:['', Validators.required], 
-        })
-      }
-      
-
-  
+        this.modo = 'crear';                  
+      }  
   }
   form_usuario: FormGroup; 
 
@@ -72,15 +62,15 @@ export class CrearUsuarioComponent implements OnInit {
   agregarUsuario(){
     const user: Usuario = {
      
-      name: this.form_usuario.value.name,
-      lastName: this.form_usuario.value.lastName,
-      address: this.form_usuario.value.address,
-      phoneNumber: this.form_usuario.value.phoneNumber,
-      rol: this.form_usuario.value.rol,
-      user:{
-        user: this.form_usuario.value.user,
-        clave:this.form_usuario.value.clave,
-        }
+          name: this.form_usuario.value.name,
+          lastName: this.form_usuario.value.lastName,
+          address: this.form_usuario.value.address,
+          phoneNumber: this.form_usuario.value.phoneNumber,
+          rol: this.form_usuario.value.rol,
+          user:{
+            user: this.form_usuario.value.user,
+            clave:this.form_usuario.value.clave,
+            }
     }
       this._usuarioService.agregarUsuario(user).subscribe(
       (response) => {
@@ -98,7 +88,8 @@ export class CrearUsuarioComponent implements OnInit {
 }
 modificarUsuario(){
   const user: Usuario = {
-    name: this.form_usuario.value.name,
+
+      name: this.form_usuario.value.name,
       lastName: this.form_usuario.value.lastName,
       address: this.form_usuario.value.address,
       phoneNumber: this.form_usuario.value.phoneNumber,
@@ -139,9 +130,7 @@ gestionarUsuario(){
     this.agregarUsuario();
   } else if(this.modo == 'modificar') {
     this.modificarUsuario();
-  }else{
-      // otra accion
-   }
+  }
 }
 
 }

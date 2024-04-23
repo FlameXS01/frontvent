@@ -8,8 +8,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UsuarioService {
+  modificarUsuario(user: Usuario) {
+    return this.servicio.get(`${this.servidor}/person/updateUser/${user.idPerson}`);
+  }
   cargarUsuario(id: number) {
-
+    return this.servicio.get(`${this.servidor}/person/${id}`);
   }
 
   constructor(private servicio:HttpClient) { }

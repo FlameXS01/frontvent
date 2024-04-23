@@ -22,6 +22,7 @@ const routes: Routes = [
     {path: 'national-prod/crear-prod', component: NationalProductComponent},
     {path: 'ventas', component: VentasComponent},// lista
     {path: 'ventas/crear-venta', component: CrearVentaComponent},
+    {path: 'usuarios/modificar/', component: CrearUsuarioComponent },
     
 
   ]}

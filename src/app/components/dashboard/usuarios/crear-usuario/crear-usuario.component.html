@@ -1,8 +1,11 @@
 <mat-toolbar>
-  <span>Crear Usuario</span>
+
+    <span *ngIf="modo=='crear'">Crear Usuario</span>
+    <span *ngIf="modo=='modificar'">Modificar Usuario</span>
+
 </mat-toolbar>
 <mat-card style="margin-top: 10px;">Formulario de Usuario
-<form [formGroup]="form_usuario" (ngSubmit)="agregarUsuario()" >
+<form [formGroup]="form_usuario" (ngSubmit)="gestionarUsuario()" >
   <mat-grid-list cols="4" rowHeight="70px">
           <mat-grid-tile [colspan]="1" [rowspan]="1">
               <mat-form-field class="ancho">
@@ -62,7 +65,7 @@
                   </mat-error>
               </mat-form-field> 
           </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-grid-tile [colspan]="1" [rowspan]="1" *ngIf="modo=='crear'">
               <mat-form-field class="ancho">
                   <mat-label>Contraseña</mat-label>
                   <input matInput type="password" autocomplete="off" formControlName="clave">
