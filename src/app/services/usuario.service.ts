@@ -30,20 +30,19 @@ export class UsuarioService {
     return this.lista_usuarios.slice();
   }
 
-  eliminar_usuario(id: number){
-    
+  eliminar_usuario(id: number){    
       return this.servicio.delete(`${this.servidor}/person/deletePerson/${id}`);
-    
-  
-  }
-
-  
+  } 
 
   agregarUsuario(usuario: Usuario){
     return this.servicio.post(`${this.servidor}/person/createPerson`, usuario);
-
-
   }
-
+  login(user: string, clave: string) {
+    return this.servicio.post(`${this.servidor}/users/login`, { user, clave });
+  }
+  getRol (id: number){
+    return this.servicio.get(`${this.servidor}/person/${id}`) ;
+    
+  }
 
 }

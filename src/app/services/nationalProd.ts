@@ -37,5 +37,8 @@ export class NationalProdService {
 
   }
 
+  todosLosProd(): Observable<any>{
+    return this.servicio.get(`${this.servidor}/product`);
 
+  }
 }

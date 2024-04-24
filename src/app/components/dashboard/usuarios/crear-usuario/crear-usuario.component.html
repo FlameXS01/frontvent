@@ -37,7 +37,7 @@
           <mat-grid-tile [colspan]="1" [rowspan]="1">
               <mat-form-field class="ancho">
                   <mat-label>Teléfono</mat-label>
-                  <input matInput autocomplete="off" formControlName="phoneNumber">
+                  <input matInput type="number" autocomplete="off" formControlName="phoneNumber">
                   <mat-error *ngIf="form_usuario.get('phoneNumber')?.invalid">
                       Teléfono inválido
                     </mat-error>
