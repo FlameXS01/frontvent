@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { NationalProd } from '../interface/nationalProd';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Product } from '../interface/product';
 
 
 
@@ -40,5 +41,8 @@ export class NationalProdService {
   todosLosProd(): Observable<any>{
     return this.servicio.get(`${this.servidor}/product`);
 
+  }
+  getProductsByCategory(idCategoria: number): Observable<Product[]> {
+    return this.servicio.get<Product[]>(`${this.servidor}/product/getprodbyCateg/${idCategoria}`);
   }
 }

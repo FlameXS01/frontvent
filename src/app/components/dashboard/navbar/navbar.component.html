@@ -1,7 +1,8 @@
 <mat-toolbar color="primary">
-    <span>My Application</span>
+    <span>E-Shop</span>
     <span class="example-spacer"></span>
     <button mat-button routerLink="/dashboard" >Inicio</button>
+    <button mat-button routerLink="/dashboard/ventas/crear-venta" >Comprar</button>
     <button *ngIf="rol !== 'cliente'" mat-button routerLink="/dashboard/foreinProd/crear-prod" >Productos extranjeros</button>
     <button *ngIf="rol !== 'cliente'" mat-button routerLink="/dashboard/national-prod" >Productos nacionales</button>
     <button *ngIf="rol !== 'cliente'" mat-button routerLink="/dashboard/ventas" >Ventas</button>

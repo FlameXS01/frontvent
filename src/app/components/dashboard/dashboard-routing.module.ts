@@ -17,7 +17,8 @@ const routes: Routes = [
   {path: '', component: DashboardComponent, children: [
     {path: '', component: InicioComponent},
     {path: 'usuarios', component: UsuarioComponent},//lista
-    {path: 'usuarios/crear-usuario', component: CrearUsuarioComponent},
+    {path: 'usuarios/crear-usuario', component: CrearUsuarioComponent, data: { estado: 'crear' }},
+    {path: 'usuarios/crear-usuario/:id', component: CrearUsuarioComponent, data: { estado: 'modificar' }},
     {path: 'foreinProd/crear-prod', component: ListarProdComponent},//lista
     {path: 'forein-product', component: ForeinProductComponent},
     {path: 'national-prod', component: NationalProdComponent},//lista

@@ -19,6 +19,7 @@ export class CrearVentaComponent implements OnInit {
   form_venta: FormGroup; 
 
   id!: number;
+  rol! : string;
   products!: AnyProd[];
 
   constructor(
@@ -41,6 +42,7 @@ export class CrearVentaComponent implements OnInit {
 
   ngOnInit(): void {
     this.sharedService.currentId.subscribe(id => this.id = id);
+    this.sharedService.currentRol.subscribe(rol => this.rol = rol);
     forkJoin({
       nacionales: this._nationalProd.consultarNationalProd(),
       extranjeros: this._foreignProd.consultarForeignProd()
@@ -60,8 +62,12 @@ export class CrearVentaComponent implements OnInit {
     }
     this._ventasService.agregarVentas(venta).subscribe(
       (response) => {
-        this.router.navigate(['/dashboard/ventas']); 
-          this._snackBar.open('Producto creado correctamente', '', {
+        if (this.rol != "cliente"){
+          this.router.navigate(['/dashboard/ventas']); 
+        }else {
+          this.router.navigate(['/dashboard/']); 
+        }
+          this._snackBar.open('Compra realizada correctamente', '', {
           duration: 1500,
           horizontalPosition: 'center',
           verticalPosition: 'bottom'

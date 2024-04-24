@@ -26,35 +26,45 @@ export class CrearUsuarioComponent implements OnInit {
     private _snackBar: MatSnackBar, 
     private route: ActivatedRoute,
     
-  )  {  
+    
+  )  {
+    this.idTempo =  0;  
+    if (this.modo === 'crear') {
       this.form_usuario = this.fb.group({
-        name:['', Validators.required],
-        lastName:['', Validators.required],
-        address:['', Validators.required],
-        phoneNumber:['', Validators.required],
-        rol:['', Validators.required],
-        user:['', Validators.required], 
-        clave:['', Validators.required], 
+        name: ['', Validators.required],
+        lastName: ['', Validators.required],
+        address: ['', Validators.required],
+        phoneNumber: ['', Validators.required],
+        rol: ['', Validators.required],
+        user: ['', Validators.required], 
+        clave: ['', Validators.required], 
       });
-      if (this.route.snapshot.data['estado'] == 'modificar') {
-        // formulario para modificar    
-        const id = this.route.snapshot.params['id'];
-        this.modo = 'modificar';        
-       
-        this.cargarUsuario(id);
-      } else {
-        // formulario para agregar 
-        this.modo = 'crear';                  
-      }  
+    } else  {
+      this.form_usuario = this.fb.group({
+        name: ['', Validators.required],
+        lastName: ['', Validators.required],
+        address: ['', Validators.required],
+        phoneNumber: ['', Validators.required],
+        rol: ['', Validators.required],
+        user: [''], 
+        clave: [''], 
+      });
+    }
+    
   }
   form_usuario: FormGroup; 
-
+idTempo : number;
   ngOnInit(): void {
-    this.form_usuario.valueChanges.subscribe(val => {
-      console.log('Form validity: ', this.form_usuario.valid);
-      console.log('Form value: ', this.form_usuario.value);
-      console.log('Form status: ', this.form_usuario.status);
-      console.log('Form errors: ', this.form_usuario.errors);
+    this.route.queryParams.subscribe(params => {
+      const estado = params['estado'];
+      if (estado === 'modificar') {
+        const id = this.route.snapshot.params['id'];
+        this.idTempo = id;
+        this.modo = 'modificar';    
+        this.cargarUsuario(id);
+      } else {
+        this.modo = 'crear';                  
+      }
     });
   }
   
@@ -95,11 +105,12 @@ modificarUsuario(){
       phoneNumber: this.form_usuario.value.phoneNumber,
       rol: this.form_usuario.value.rol,
       user:{
+        id: this.form_usuario.value.id,
         user: this.form_usuario.value.user,
         clave:this.form_usuario.value.clave,
         }
     }
-    this._usuarioService.modificarUsuario(user).subscribe(
+    this._usuarioService.modificarUsuario(user, this.idTempo).subscribe(
       (response) => {
         this.router.navigate(['/dashboard/usuarios']); 
           this._snackBar.open('Usuario modificado correctamente', '', {
@@ -115,16 +126,29 @@ modificarUsuario(){
   }
   
 
-cargarUsuario(id: number){    
+  cargarUsuario(id: number){    
   this._usuarioService.cargarUsuario(id).subscribe({
-    next: resp => {
+    next: (resp: any) => { // Añade ': any' aquí
       console.log(resp);
-      this.form_usuario.setValue(resp);
+      // Asigna los valores al formulario
+      this.form_usuario.patchValue({
+        name: resp.name,
+        lastName: resp.lastName,
+        address: resp.address,
+        phoneNumber: resp.phoneNumber,
+        rol: resp.rol,
+        id:resp.user.user,
+        user: resp.user.user, // Accede al valor de 'user' dentro del objeto 'user'
+        clave: resp.user.clave // Accede al valor de 'clave' dentro del objeto 'user'
+      });
     },
     error: () => {
+      // Maneja el error
     }
-    });
+  });
 } 
+
+  
 gestionarUsuario(){
   if (this.modo == 'crear') {
     this.agregarUsuario();

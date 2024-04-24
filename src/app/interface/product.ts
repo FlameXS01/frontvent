@@ -24,5 +24,5 @@ export interface Product {
         product: Product;
       }
       
-      export type AnyProd = ForeignProd | NationalProd;
+      export type AnyProd = ForeignProd | NationalProd ;
       

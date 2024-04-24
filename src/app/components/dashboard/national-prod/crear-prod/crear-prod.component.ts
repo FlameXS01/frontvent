@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NationalProdService } from 'src/app/services/nationalProd';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Categoria } from 'src/app/interface/categoria';
+import { CategoriaService } from 'src/app/services/categoria';
 
 
 @Component({
@@ -12,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./crear-prod.component.css']
 })
 export class NationalProductComponent {
-  constructor( private fb: FormBuilder, private _nationalProdService: NationalProdService, private _snackBar: MatSnackBar, private router: Router)  { 
+  constructor( private fb: FormBuilder,  private _categorieService: CategoriaService ,private _nationalProdService: NationalProdService, private _snackBar: MatSnackBar, private router: Router)  { 
     this.form_producto = this.fb.group({
       maker:['', Validators.required],
       buyPrice:['', Validators.required],
@@ -27,9 +29,19 @@ export class NationalProductComponent {
       })
   
   }
-  form_producto: FormGroup; 
- 
+  form_producto: FormGroup;
+
+  categories!: Categoria[];
+
   ngOnInit(): void {
+    this._categorieService.consultarCategoria().subscribe(
+      (categorias) => {
+        this.categories = categorias;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   agregarNationalProd(){
@@ -44,7 +56,7 @@ export class NationalProductComponent {
         stock: this.form_producto.value.stock,
         createAt: this.form_producto.value.createAt,
         expireAt: this.form_producto.value.expireAt,
-        idCategory: this.form_producto.value.idCategory,
+        category: this.form_producto.value.idCategory,
       }
     }
     this._nationalProdService.agregarNationalProd(prodN).subscribe(

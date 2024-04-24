@@ -6,6 +6,7 @@ export interface Usuario{
     phoneNumber:number;
     rol:string;
     user:{
+        id?: number;
         user: string;
         clave: string;
     };

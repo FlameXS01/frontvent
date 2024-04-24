@@ -31,19 +31,19 @@
             </mat-grid-tile>
             <mat-grid-tile [colspan]="1" [rowspan]="1">
                 <mat-form-field class="ancho">
-                    <mat-label>Precio</mat-label>
+                    <mat-label>Precio de venta</mat-label>
                     <input matInput type="number" autocomplete="off" formControlName="price">
                 </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="1" [rowspan]="1">
                 <mat-form-field class="ancho">
-                    <mat-label>Peso</mat-label>
+                    <mat-label>Peso (lb)</mat-label>
                     <input matInput type="number" autocomplete="off" formControlName="weight">
                 </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="1" [rowspan]="1">
                 <mat-form-field class="ancho">
-                    <mat-label>Stock</mat-label>
+                    <mat-label>Cantidad</mat-label>
                     <input matInput type="number" autocomplete="off" formControlName="stock">
                 </mat-form-field>
             </mat-grid-tile>
@@ -61,8 +61,12 @@
             </mat-grid-tile>
             <mat-grid-tile [colspan]="1" [rowspan]="1">
                 <mat-form-field class="ancho">
-                    <mat-label>ID de Categoría</mat-label>
-                    <input matInput type="number" autocomplete="off" formControlName="idCategory">
+                    <mat-label>Categoría</mat-label>
+                    <mat-select formControlName="idCategory">
+                        <mat-option *ngFor="let categ of categories" [value]="categ.idCategory">
+                          {{categ.name}}
+                        </mat-option>
+                      </mat-select>
                 </mat-form-field>
             </mat-grid-tile>
             <mat-grid-tile [colspan]="2" [rowspan]="1" >

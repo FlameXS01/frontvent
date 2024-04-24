@@ -1,4 +1,7 @@
+import { AnyProd, Product } from "./product";
+
 export interface Categoria {
-    idCategoria?: number;
+    idCategory?: number;
     name: string ;
+    products?: Product[];
 }

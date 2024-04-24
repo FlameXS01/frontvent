@@ -10,7 +10,7 @@ export interface NationalProd {
         stock: number;
         createAt: Date;
         expireAt: Date;
-        idCategory: number;
+        category: number;
 }
    
 }

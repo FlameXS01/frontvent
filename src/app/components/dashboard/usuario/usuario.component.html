@@ -35,9 +35,9 @@
           <a class="pointer" style="color: #1878b0;" matTooltip="Ver Datos Usuario">
               <mat-icon >search</mat-icon>
           </a>
-          <a class="pointer" routerLink="/dashboard/usuarios/modificar/{{element.id}}"      style="color: #1f516f;" matTooltip="Editar Datos Usuario">
-              <mat-icon >edit</mat-icon>
-          </a>
+          <a class="pointer" [routerLink]="['/dashboard/usuarios/crear-usuario', element.idPerson]" [queryParams]="{estado: 'modificar'}" style="color: #1f516f;" matTooltip="Editar Datos Usuario">
+            <mat-icon>edit</mat-icon>
+        </a>
           <a class="pointer" (click)="eliminarUsuario(element.idPerson)"  style="color: #e15639;" matTooltip="Eliminar Usuario">
             <mat-icon>delete</mat-icon>
           </a>

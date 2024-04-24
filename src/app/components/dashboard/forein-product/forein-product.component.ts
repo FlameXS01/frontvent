@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ForeignProdService } from 'src/app/services/foreignProd';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Categoria } from 'src/app/interface/categoria';
+import { CategoriaService } from 'src/app/services/categoria';
 
 
 @Component({
@@ -12,7 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./forein-product.component.css']
 })
 export class ForeinProductComponent {
-  constructor( private fb: FormBuilder, private _foreignProdService: ForeignProdService, private router: Router, private _snackBar: MatSnackBar )  { 
+  constructor( private fb: FormBuilder, private _categorieService: CategoriaService ,private _foreignProdService: ForeignProdService, private router: Router, private _snackBar: MatSnackBar )  { 
     this.form_producto = this.fb.group({
       country:['', Validators.required],
       buyPrice:['', Validators.required],
@@ -28,9 +30,19 @@ export class ForeinProductComponent {
   
   }
   form_producto: FormGroup; 
+  categories! : Categoria[];
  
   ngOnInit(): void {
+    this._categorieService.consultarCategoria().subscribe(
+      (categorias) => {
+        this.categories = categorias;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
+  
 
     agregarForeignProd(){
       const prod: ForeignProd = {
@@ -44,7 +56,7 @@ export class ForeinProductComponent {
           stock: this.form_producto.value.stock,
           createAt: this.form_producto.value.createAt,
           expireAt: this.form_producto.value.expireAt,
-          idCategory: this.form_producto.value.idCategory,
+          category: this.form_producto.value.idCategory,
           }
         }
             

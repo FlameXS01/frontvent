@@ -1,7 +1,7 @@
 <mat-toolbar>
-    <span>Nacionales</span>
+    <span>Productos nacionales</span>
     <span class="example-spacer"></span>
-    <button mat-raised-button color="primary" routerLink="/dashboard/national-prod/crear-prod">Add Product</button>
+    <button mat-raised-button color="primary" routerLink="/dashboard/national-prod/crear-prod">Agregar</button>
 </mat-toolbar>
 
 <mat-form-field appearance="fill">
@@ -11,27 +11,27 @@
 
 <table matSort mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <ng-container matColumnDef="maker">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Maker </th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fabricante </th>
         <td mat-cell *matCellDef="let element"> {{element.maker}} </td>
     </ng-container>
     <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
         <td mat-cell *matCellDef="let element"> {{element.product.name}} </td>
     </ng-container>
     <ng-container matColumnDef="description">
-        <th mat-header-cell *matHeaderCellDef> Description </th>
+        <th mat-header-cell *matHeaderCellDef> Descripción </th>
         <td mat-cell *matCellDef="let element"> {{element.product.description}} </td>
     </ng-container>
     <ng-container matColumnDef="price">
-        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <th mat-header-cell *matHeaderCellDef> Precio </th>
         <td mat-cell *matCellDef="let element"> {{element.product.price}} </td>
     </ng-container>
     <ng-container matColumnDef="weight">
-        <th mat-header-cell *matHeaderCellDef> Weight </th>
+        <th mat-header-cell *matHeaderCellDef> Peso  (lb) </th>
         <td mat-cell *matCellDef="let element"> {{element.product.weight}} </td>
     </ng-container>
     <ng-container matColumnDef="expireAt">
-        <th mat-header-cell *matHeaderCellDef> Expiry Date </th>
+        <th mat-header-cell *matHeaderCellDef> Fecha de vencimiento </th>
         <td mat-cell *matCellDef="let element"> {{element.product.expireAt}} </td>
     </ng-container>
     <ng-container matColumnDef="acciones">

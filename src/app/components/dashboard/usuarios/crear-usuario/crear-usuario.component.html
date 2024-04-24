@@ -10,6 +10,8 @@
           <mat-grid-tile [colspan]="1" [rowspan]="1">
               <mat-form-field class="ancho">
                   <mat-label>Nombre</mat-label>
+                  <input type="hidden" formControlName="idPerson">
+                  <input type="hidden" formControlName="id">
                   <input matInput autocomplete="off" formControlName="name">
                   <mat-error *ngIf="form_usuario.get('name')?.invalid">
                       Nombre inválido
@@ -56,7 +58,7 @@
                   </mat-error>
               </mat-form-field> 
           </mat-grid-tile>
-          <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-grid-tile [colspan]="1" [rowspan]="1" >
               <mat-form-field class="ancho">
                   <mat-label>Usuario</mat-label>
                   <input matInput autocomplete="off" formControlName="user">
