@@ -6,6 +6,7 @@
     <button *ngIf="rol !== 'cliente'" mat-button routerLink="/dashboard/national-prod" >Productos nacionales</button>
     <button *ngIf="rol !== 'cliente'" mat-button routerLink="/dashboard/ventas" >Ventas</button>
     <button *ngIf="rol === 'admin'" mat-button routerLink="/dashboard/usuarios" >Usuarios</button>
+    <button *ngIf="rol === 'admin'" mat-button routerLink="/dashboard/categorias" >Categorías</button>
     <span class="example-spacer"></span>
     <mat-icon routerLink="/logout"  aria-hidden="false" aria-label="Example home icon" fontIcon="logout"></mat-icon>
 </mat-toolbar>

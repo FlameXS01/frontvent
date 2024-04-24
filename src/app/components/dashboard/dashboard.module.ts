@@ -15,6 +15,8 @@ import { NationalProductComponent } from './national-prod/crear-prod/crear-prod.
 import { VentasComponent } from './ventas/ventas.component';
 import { CrearVentaComponent } from './ventas/crear-venta/crear-venta.component';
 import { HttpClient } from '@angular/common/http';
+import { CategoriaComponent } from './categoria/categoria.component';
+import { CrearCategoriaComponent } from './categoria/crear-categoria/crear-categoria.component';
 
 
 
@@ -32,6 +34,8 @@ import { HttpClient } from '@angular/common/http';
     NationalProductComponent,
     VentasComponent,
     CrearVentaComponent,
+    CategoriaComponent,
+    CrearCategoriaComponent,
     
     
 
