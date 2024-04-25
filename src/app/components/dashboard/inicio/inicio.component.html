@@ -1,6 +1,8 @@
+<div>
+  <h2>Producto más vendido : {{ mostSellProd }} y Vendedor más destacado : {{ topSeller }}</h2>
+</div>
+
 <h1>Todos los productos </h1>
-
-
 <div *ngFor="let categoria of categories">
   <h2>{{ categoria.name }}</h2>
   <div *ngIf="categoria.products && categoria.products.length > 0; else noProducts">
