@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
     this._usuarioService.login(user, clave).subscribe(
       (userId: any) => {
         if(userId != 0 ){
+          
           this._usuarioService.getRol(userId).subscribe(
             (rol: any) => {
               this.face_cargando(rol.rol, userId);

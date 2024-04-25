@@ -43,7 +43,7 @@ export class UsuarioService {
     return this.servicio.post(`${this.servidor}/users/login`, { user, clave });
   }
   getRol (id: number){
-    return this.servicio.get(`${this.servidor}/person/${id}`) ;
+    return this.servicio.get(`${this.servidor}/person/findPersonByIdUSer/${id}`) ;
     
   }
 

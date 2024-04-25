@@ -51,7 +51,7 @@ export class NationalProductComponent {
       product:{
         name: this.form_producto.value.name,
         description: this.form_producto.value.description,
-        price: this.form_producto.value.price,
+        price:  this.form_producto.value.price,
         weight: this.form_producto.value.weight,
         stock: this.form_producto.value.stock,
         createAt: this.form_producto.value.createAt,
