@@ -14,7 +14,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 
 export class UsuarioComponent {
-  displayedColumns: string[] = ['user', 'name', 'lastName','phoneNumber', 'rol', 'acciones'];
+  displayedColumns: string[] = ['user', 'name', 'lastName','address','phoneNumber', 'rol', 'acciones'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;

@@ -40,7 +40,9 @@ export class NationalProdService {
 
   todosLosProd(): Observable<any>{
     return this.servicio.get(`${this.servidor}/product`);
-
+  }
+  losProdXId(id : number): Observable<any>{
+    return this.servicio.get(`${this.servidor}/product/${id}`);
   }
   getProductsByCategory(idCategoria: number): Observable<Product[]> {
     return this.servicio.get<Product[]>(`${this.servidor}/product/getprodbyCateg/${idCategoria}`);

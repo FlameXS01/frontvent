@@ -98,18 +98,17 @@ idTempo : number;
 }
 modificarUsuario(){
   const user: Usuario = {
-
-      name: this.form_usuario.value.name,
-      lastName: this.form_usuario.value.lastName,
-      address: this.form_usuario.value.address,
-      phoneNumber: this.form_usuario.value.phoneNumber,
-      rol: this.form_usuario.value.rol,
-      user:{
-        id: this.form_usuario.value.id,
-        user: this.form_usuario.value.user,
-        clave:this.form_usuario.value.clave,
-        }
+    name: this.form_usuario.value.name,
+    lastName: this.form_usuario.value.lastName,
+    address: this.form_usuario.value.address,
+    phoneNumber: this.form_usuario.value.phoneNumber,
+    rol: this.form_usuario.value.rol,
+    user: {
+      id: this.idTempo,
+      user: this.form_usuario.value.user,
+      clave: this.form_usuario.value.clave
     }
+  }
     this._usuarioService.modificarUsuario(user, this.idTempo).subscribe(
       (response) => {
         this.router.navigate(['/dashboard/usuarios']); 

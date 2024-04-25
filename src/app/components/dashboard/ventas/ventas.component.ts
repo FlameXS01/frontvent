@@ -3,7 +3,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { forkJoin, map, switchMap } from 'rxjs';
+import { AnyProd, NationalProd, Product } from 'src/app/interface/product';
 import { Ventas } from 'src/app/interface/ventas';
+import { NationalProdService } from 'src/app/services/nationalProd';
 import { VentasService } from 'src/app/services/ventas';
 
 @Component({
@@ -12,16 +15,16 @@ import { VentasService } from 'src/app/services/ventas';
   styleUrls: ['./ventas.component.css']
 })
 export class VentasComponent {
-  displayedColumns: string[] = ['stock', 'price', 'dateSell','acciones'];
+  displayedColumns: string[] = ['product','stock', 'price', 'dateSell','vendedor','rol','acciones'];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private _ventasService: VentasService, private _snackBar: MatSnackBar) { }
+  constructor(private _ventasService: VentasService, private _snackBar: MatSnackBar, private prod :NationalProdService) { }
 
-  lista_ventas: Ventas [ ] = [ ];
- 
-  dataSource!: MatTableDataSource<any>;
+  productNames: { [id: number]: string } = {};
+
+  dataSource!: MatTableDataSource<Ventas>;
 
 
   applyFilter(event: Event) {
@@ -35,14 +38,10 @@ export class VentasComponent {
   }
 
   cargarVentas(){
-    this._ventasService.consultarVentas().subscribe(datos=>{
+    this._ventasService.consultarVentas().subscribe((datos : Ventas[])=>{
       this.dataSource = new MatTableDataSource(datos);
-    });    
-
-    //////////
-    // this.lista_ventas = this._ventasService.cargar_ventas();
-    // this.dataSource = new MatTableDataSource(this.lista_ventas);
-  }
+  });    
+}
   ngOnInit(): void {
     this.cargarVentas();
   }

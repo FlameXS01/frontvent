@@ -57,8 +57,8 @@ export class CrearVentaComponent implements OnInit {
       stock: this.form_venta.value.stock,
       price: this.form_venta.value.price,
       dateSell: this.form_venta.value.dateSell,
-      idPerson: this.id,
-      idProduct: this.form_venta.value.idProduct
+      person: this.id,
+      product: this.form_venta.value.idProduct
     }
     this._ventasService.agregarVentas(venta).subscribe(
       (response) => {
