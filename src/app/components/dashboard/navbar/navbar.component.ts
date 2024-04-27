@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SharedService } from 'src/app/services/shared';
 
 @Component({
   selector: 'app-navbar',
@@ -10,10 +9,8 @@ export class NavbarComponent {
   rol!: string;
   id!: number;
 
-  constructor(private sharedService: SharedService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.sharedService.currentRol.subscribe(rol => this.rol = rol);
-    this.sharedService.currentId.subscribe(id => this.id = id);
   }
 }

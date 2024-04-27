@@ -1,13 +1,6 @@
 <mat-toolbar color="primary">
-    <span>E-Shop</span>
+    <span>MY APP</span>
     <span class="example-spacer"></span>
     <button mat-button routerLink="/dashboard" >Inicio</button>
-    <button mat-button routerLink="/dashboard/ventas/crear-venta" >Comprar</button>
-    <button *ngIf="rol !== 'cliente'" mat-button routerLink="/dashboard/foreinProd/crear-prod" >Productos extranjeros</button>
-    <button *ngIf="rol !== 'cliente'" mat-button routerLink="/dashboard/national-prod" >Productos nacionales</button>
-    <button *ngIf="rol !== 'cliente'" mat-button routerLink="/dashboard/ventas" >Ventas</button>
-    <button *ngIf="rol === 'admin'" mat-button routerLink="/dashboard/usuarios" >Usuarios</button>
-    <button *ngIf="rol === 'admin'" mat-button routerLink="/dashboard/categorias" >Categorías</button>
     <span class="example-spacer"></span>
-    <mat-icon routerLink="/logout"  aria-hidden="false" aria-label="Example home icon" fontIcon="logout"></mat-icon>
 </mat-toolbar>

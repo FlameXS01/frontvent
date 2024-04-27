@@ -1,18 +1,1 @@
-<div>
-  <h2>Producto más vendido : {{ mostSellProd }} y Vendedor más destacado : {{ topSeller }}</h2>
-</div>
-
-<h1>Productos por categorías</h1>
-<div *ngFor="let categoria of categories">
-  <h2>{{ categoria.name }}</h2>
-  <div *ngIf="categoria.products && categoria.products.length > 0; else noProducts">
-    <div *ngFor="let product of categoria.products">
-      <h3>{{ product.name }}</h3>
-      <p>Descripción: {{ product.description }}</p>
-      
-    </div>
-  </div>
-  <ng-template #noProducts>
-    <p>No hay productos en esta categoría.</p>
-  </ng-template>
-</div>
+<p>Inicio Works</p>
